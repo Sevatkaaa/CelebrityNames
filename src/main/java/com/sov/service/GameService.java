@@ -17,6 +17,10 @@ public class GameService {
     @Resource
     private GameRepository gameRepository;
 
+    public GameModel getGame(String id) {
+        return gameRepository.findById(id).orElseThrow(RuntimeException::new);
+    }
+
     public GameModel createGame(Game game) {
         String id = getId();
         GameModel gameModel = new GameModel();

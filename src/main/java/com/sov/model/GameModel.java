@@ -26,4 +26,7 @@ public class GameModel {
 
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TeamModel> teams = new ArrayList<>();
+
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<NameModel> names = new ArrayList<>();
 }

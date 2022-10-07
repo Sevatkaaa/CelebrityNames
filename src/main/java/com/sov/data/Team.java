@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 @Data
 public class Team {
+    private Long id;
+
     private String name;
 
     private Integer score;
@@ -16,6 +18,7 @@ public class Team {
 
     public static Team of(TeamModel teamModel) {
         Team team = new Team();
+        team.id = teamModel.getId();
         team.name = teamModel.getName();
         team.score = teamModel.getScore();
         team.players = teamModel.getPlayers().stream().map(Player::of).collect(Collectors.toList());

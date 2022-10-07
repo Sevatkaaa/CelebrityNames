@@ -1,6 +1,7 @@
 package com.sov.data;
 
 import com.sov.model.GameModel;
+import com.sov.model.NameModel;
 import lombok.Data;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class Game {
 
     private List<Team> teams;
 
+    private List<String> names;
+
     public static Game of(GameModel gameModel) {
         Game game = new Game();
         game.id = gameModel.getId();
@@ -25,6 +28,7 @@ public class Game {
         game.nameAmount = gameModel.getNameAmount();
         game.status = gameModel.getStatus();
         game.teams = gameModel.getTeams().stream().map(Team::of).collect(Collectors.toList());
+        game.names = gameModel.getNames().stream().map(NameModel::getValue).collect(Collectors.toList());
         return game;
     }
 }
