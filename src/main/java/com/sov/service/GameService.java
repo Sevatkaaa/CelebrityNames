@@ -61,8 +61,11 @@ public class GameService {
 
     public List<Long> getPlayers(GameModel game) {
         List<Long> playerIds = new ArrayList<>();
-        game.getTeams().stream().map(TeamModel::getPlayers).forEach(p -> playerIds.addAll(p.stream().map(PlayerModel::getId).collect(Collectors.toList())));
-        Collections.sort(playerIds);
+        List<TeamModel> teams = game.getTeams();
+        teams.sort((a, b) -> (int) (a.getId() - b.getId()));
+        teams.forEach(t -> t.getPlayers().sort((a, b) -> (int) (a.getId() - b.getId())));
+        teams.forEach(t -> playerIds.add(t.getPlayers().get(0).getId()));
+        teams.forEach(t -> playerIds.add(t.getPlayers().get(1).getId()));
         return playerIds;
     }
 
