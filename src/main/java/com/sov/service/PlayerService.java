@@ -18,7 +18,7 @@ public class PlayerService {
     @Resource
     private PlayerRepository playerRepository;
 
-    public void addPlayerToTeam(String gameId, Long teamId, Player player) {
+    public PlayerModel addPlayerToTeam(String gameId, Long teamId, Player player) {
         GameModel game = gameService.getGame(gameId);
         TeamModel team = game.getTeams()
                 .stream()
@@ -34,7 +34,7 @@ public class PlayerService {
         PlayerModel playerModel = new PlayerModel();
         playerModel.setName(player.getName());
         playerModel.setTeam(team);
-        playerRepository.save(playerModel);
+        return playerRepository.save(playerModel);
     }
 
 }

@@ -16,8 +16,7 @@ public class PlayerController {
     private PlayerService playerService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> addPlayerToTeam(@PathVariable String gameId, @PathVariable Long teamId, @RequestBody Player player) {
-        playerService.addPlayerToTeam(gameId, teamId, player);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Player> addPlayerToTeam(@PathVariable String gameId, @PathVariable Long teamId, @RequestBody Player player) {
+        return ResponseEntity.ok(Player.of(playerService.addPlayerToTeam(gameId, teamId, player)));
     }
 }

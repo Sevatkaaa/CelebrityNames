@@ -17,6 +17,7 @@ public class GameController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Game> getGame(@PathVariable String id) {
+        gameService.refreshGameStatus(id);
         return ResponseEntity.ok(Game.of(gameService.getGame(id)));
     }
 

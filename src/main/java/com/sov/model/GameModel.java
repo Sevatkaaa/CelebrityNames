@@ -24,6 +24,8 @@ public class GameModel {
 
     private GameStatus status;
 
+    private Long currentPlayerId;
+
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TeamModel> teams = new ArrayList<>();
 
