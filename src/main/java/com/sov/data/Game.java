@@ -3,6 +3,7 @@ package com.sov.data;
 import com.sov.model.GameModel;
 import lombok.Data;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,7 @@ public class Game {
         game.teams = gameModel.getTeams().stream().map(Team::of).collect(Collectors.toList());
         game.names = gameModel.getNames().stream().map(Name::of).collect(Collectors.toList());
         game.currentPlayerId = gameModel.getCurrentPlayerId();
+        Collections.shuffle(game.names);
         return game;
     }
 }
